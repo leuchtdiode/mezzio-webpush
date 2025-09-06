@@ -31,14 +31,6 @@ class Sender
 		$this->checkConfigParam('public-key', $webPushConfig);
 		$this->checkConfigParam('private-key', $webPushConfig);
 
-		$webPush = new WebPush([
-			'VAPID' => [
-				'subject'    => $webPushConfig['host'],
-				'publicKey'  => $webPushConfig['public-key'],
-				'privateKey' => $webPushConfig['private-key'],
-			],
-		]);
-
 		$notification = $data->getNotification();
 		$subscription = $notification->getSubscription();
 
@@ -46,6 +38,36 @@ class Sender
 		{
 			throw new Exception('Notification must be loaded with subscription');
 		}
+
+		$payload = $notification->getPayload();
+
+		$defaultOptions = [];
+
+		if (isset($payload['TTL']))
+		{
+			$defaultOptions['TTL'] = $payload['TTL'];
+		}
+
+		if (isset($payload['urgency']))
+		{
+			$defaultOptions['urgency'] = $payload['urgency'];
+		}
+
+		if (isset($payload['topic']))
+		{
+			$defaultOptions['topic'] = $payload['topic'];
+		}
+
+		$webPush = new WebPush(
+			[
+				'VAPID' => [
+					'subject'    => $webPushConfig['host'],
+					'publicKey'  => $webPushConfig['public-key'],
+					'privateKey' => $webPushConfig['private-key'],
+				],
+			],
+			$defaultOptions
+		);
 
 		$report = $webPush->sendOneNotification(
 			Subscription::create($subscription->getData()),
