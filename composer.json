@@ -20,7 +20,7 @@
 	"require": {
 		"php": "~8.3.0 || ~8.4.0",
 		"leuchtdiode/mezzio-common": "^1.0.0",
-		"leuchtdiode/mezzio-console": "^0.0.1",
+		"leuchtdiode/mezzio-console": ">=0.0.1 <1.0.0",
 		"leuchtdiode/mezzio-log": "^1.0.0",
 		"minishlink/web-push": "^9.0.0",
 		"ramsey/uuid": "^4.9.0",
