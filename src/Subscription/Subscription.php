@@ -5,6 +5,7 @@ use Common\Dto\Dto;
 use Common\Hydration\ArrayHydratable;
 use Common\Hydration\ObjectToArrayHydratorProperty;
 use DateTime;
+use DateTimeInterface;
 use Ramsey\Uuid\UuidInterface;
 
 class Subscription implements Dto, ArrayHydratable
@@ -14,7 +15,7 @@ class Subscription implements Dto, ArrayHydratable
 		private readonly string $endpoint,
 		private readonly ?string $name,
 		private readonly array $data,
-		private readonly DateTime $creationDate
+		private readonly DateTimeInterface $creationDate
 	)
 	{
 	}
@@ -44,7 +45,7 @@ class Subscription implements Dto, ArrayHydratable
 	}
 
 	#[ObjectToArrayHydratorProperty]
-	public function getCreationDate(): DateTime
+	public function getCreationDate(): DateTimeInterface
 	{
 		return $this->creationDate;
 	}

@@ -3,6 +3,7 @@ namespace Try2catch\WebPush\Db\Subscription;
 
 use Common\Db\Entity as DbEntity;
 use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -25,7 +26,7 @@ class Entity implements DbEntity
 	private array $data;
 
 	#[ORM\Column(type: 'datetime', nullable: false)]
-	private DateTime $creationDate;
+	private DateTimeInterface $creationDate;
 
 	public function __construct()
 	{
@@ -73,12 +74,12 @@ class Entity implements DbEntity
 		$this->data = $data;
 	}
 
-	public function getCreationDate(): DateTime
+	public function getCreationDate(): DateTimeInterface
 	{
 		return $this->creationDate;
 	}
 
-	public function setCreationDate(DateTime $creationDate): void
+	public function setCreationDate(DateTimeInterface $creationDate): void
 	{
 		$this->creationDate = $creationDate;
 	}

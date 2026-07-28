@@ -3,6 +3,7 @@ namespace Try2catch\WebPush\Db\Notification;
 
 use Common\Db\Entity as DbEntity;
 use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -24,7 +25,7 @@ class Entity implements DbEntity
 	private array $payload;
 
 	#[ORM\Column(type: 'datetime', nullable: false)]
-	private DateTime $creationDate;
+	private DateTimeInterface $creationDate;
 
 	#[ORM\Column(type: 'datetime', nullable: true)]
 	private ?DateTime $sentAt = null;
@@ -68,22 +69,22 @@ class Entity implements DbEntity
 		$this->payload = $payload;
 	}
 
-	public function getCreationDate(): DateTime
+	public function getCreationDate(): DateTimeInterface
 	{
 		return $this->creationDate;
 	}
 
-	public function setCreationDate(DateTime $creationDate): void
+	public function setCreationDate(DateTimeInterface $creationDate): void
 	{
 		$this->creationDate = $creationDate;
 	}
 
-	public function getSentAt(): ?DateTime
+	public function getSentAt(): ?DateTimeInterface
 	{
 		return $this->sentAt;
 	}
 
-	public function setSentAt(?DateTime $sentAt): void
+	public function setSentAt(?DateTimeInterface $sentAt): void
 	{
 		$this->sentAt = $sentAt;
 	}
