@@ -14,16 +14,9 @@ return [
 
 	'doctrine' => [
 		'driver' => [
-			'webpush_entities' => [
+			'orm_default' => [
 				'class' => AttributeDriver::class,
-				'cache' => 'array',
 				'paths' => [ __DIR__ . '/../src' ],
-			],
-			'orm_default'      => [
-				'class'   => AttributeDriver::class,
-				'drivers' => [
-					'Try2catch\WebPush' => 'webpush_entities',
-				],
 			],
 		],
 	],
